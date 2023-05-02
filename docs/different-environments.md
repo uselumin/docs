@@ -1,0 +1,30 @@
+---
+sidebar_position: 5
+---
+
+# Different Environments
+
+Many development workflows will have different envrionments for the same app, e.g. `development`, `staging` and `production`. You probably don't want to pollute your production statistics with events your app sends during development. 
+
+We recommend setting up one Lumin app for each of your app's environments. See [Having Multiple Apps](set-up-more-apps.mdx) for instructions on how to set up multiple apps.
+
+## In Your Code
+
+Your Lumin apps will have different tokens. In your code, you would choose the correct token based on the configured environment of your app.
+
+You can do this in multiple ways, but an easy one would be the following:
+
+```javascript
+import { Lumin } from "@uselumin/react-native";
+
+const lumin = null;
+if (process.env.ENVIRONMENT === "production") {
+    lumin = new Lumin("<Token of your PROD Lumin app>");
+} else 
+if (process.env.ENVIRONMENT === "development") {
+    lumin = new Lumin("<Token of your DEV Lumin app>");
+} else
+if // ...
+
+lumin.init();
+```

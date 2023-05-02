@@ -2,11 +2,11 @@
 sidebar_position: 1 
 ---
 
-# Sign-Up
+# Create an Account
 
 The first thing you'll have to do is sign up for a Lumin account. We have a generous free tier that should be enough to get you started with your app. No credit card required.
 
-## Create an Account
+## Sign Up
 
 Head over to [https://app.uselumin.co](https://app.uselumin.co) and either put in your Email or use your Discord account to sign up. You don't need a password for Lumin!
 
