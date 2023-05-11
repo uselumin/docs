@@ -29,13 +29,7 @@ When you entered a name, click the button labeld "Create".
 
 Next, you need to add the Lumin SDK to your app. Depending on the language or framework you use to build your app, this step will be slightly different.
 
-![Intergrate Lumin](./img/integrateLumin.png)
-
-:::info
-
-Right now, we only support React Native. But we'll relase our Flutter SDK in the coming weeks.
-
-:::
+![New App](img/newApp.png)
 
 <Tabs>
 <TabItem value="react-native" label="React Native" default>
@@ -72,13 +66,50 @@ const lumin = new Lumin("<Your Token>");
 lumin.init();
 ```
 
-The above code snippet will already be populated with the correct token during your onboarding.
-
-Once you're finished, click the button labeled "Been There, Done That".
+The above code snippet will already be populated with the correct token.
 
 </TabItem>
   <TabItem value="flutter" label="Flutter">
-    Coming soon!
+    Install the Lumin Flutter SDK and its dependencies:
+
+```bash
+dart pub add lumin_flutter
+```
+
+Then, intialize Lumin in your `main` function:
+
+```dart
+import 'package:lumin_flutter/lumin_flutter.dart';
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  await Lumin.init("<Your Lumin App Token>");
+
+  runApp(const MyApp());
+}
+```
+
+The above code snippet will already be populated with the correct token.
+
+Finally, wrap your app in the `LuminLifecycleLogger` widget:
+
+```dart
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return LuminLifecycleLogger(
+      child: MaterialApp(
+        // ...
+      )
+    );
+  }
+}
+```
+
   </TabItem>
   <TabItem value="swift" label="Swift">
     Coming soon!
@@ -88,10 +119,10 @@ Once you're finished, click the button labeled "Been There, Done That".
   </TabItem>
 </Tabs>
 
-## Open Your App
+Once you open your app for the first time (or send a [Custom Event](./custom-events)), your dashboard should show your statistics.
 
-Finally, open your app. (Opening it in the simulator works for this!)
+:::caution
 
-![Open App](./img/openApp.png)
+Each app will have a different token, so make sure you use the correct one.
 
-The red dot should turn green once the Lumin SDK has automatically sent its first event. Aftewards, you can click the button labeled "Go to Dashboard" to view your app's statistics.
+:::

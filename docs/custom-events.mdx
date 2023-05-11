@@ -1,0 +1,63 @@
+---
+sidebar_position: 4
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+# Custom Events
+
+Custom events allow you to define your own KPIs. Each custom event you send will be counted and displayed in your dashboard.
+
+To send a custom event from your app, use the `.trackCustomEvent()` method on the `Lumin` instance.
+
+<Tabs>
+  <TabItem value="react-native" label="React Native">
+
+```jsx
+<Button
+  title="Track Custom Event"
+  onPress={() => {
+    lumin.trackCustomEvent('CUSTOM_EVENT_NAME');
+  }}
+/>
+```
+
+  </TabItem>
+  <TabItem value="flutter" label="Flutter">
+
+```dart
+Lumin.instance.trackCustomEvent("EVENT_NAME");
+```
+
+  </TabItem>
+</Tabs>
+
+
+
+## Sharing One Lumin Instace Across Your App
+
+:::info
+
+This is only relevant in React Native. In Flutter, no further setup is needed, one instance of Lumin is already shared across your app.
+
+:::
+
+When you're tracking custom events, you likely won't do so only from your `App.js`. So we recommend to pull your Lumin setup code out of `App.js` into its own module. Here's an example of how you can do that in React Native:
+
+```javascript title="lumin.js"
+import { Lumin } from "@uselumin/react-native";
+
+const lumin = null;
+if (process.env.ENVIRONMENT === "production") {
+    lumin = new Lumin("<Token of your PROD Lumin app>");
+} else 
+if (process.env.ENVIRONMENT === "development") {
+    lumin = new Lumin("<Token of your DEV Lumin app>");
+} else
+if // ...
+
+lumin.init();
+
+export lumin;
+```
